@@ -31,7 +31,7 @@
   </template>
   
 <script>
-	import {ref} from "vue"
+	import {ref, onMounted} from "vue"
 	import {useRoute, useRouter} from "vue-router"
 	import axios from "axios"
 
@@ -59,6 +59,12 @@
 			router.push('/')
 		}
 		// 645a51dd6246ac03e853b340
+
+		onMounted(async () =>{
+			let result = await axios.get("/users/"+ id)
+			form.value = result.data
+			console.log(result)
+		})
   
 		return{
 		  submitFormUpdate,
